@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact name="release:zip">
+    <output-path>$PROJECT_DIR$/out/artifacts/release_zip</output-path>
+    <root id="root">
+      <element id="archive" name="release.zip">
+        <element id="artifact" artifact-name="knbnprxy:jar" />
+        <element id="file-copy" path="$PROJECT_DIR$/config.xml" />
+        <element id="file-copy" path="$PROJECT_DIR$/README" />
+        <element id="file-copy" path="$PROJECT_DIR$/run.sh" />
+      </element>
+    </root>
+  </artifact>
+</component>

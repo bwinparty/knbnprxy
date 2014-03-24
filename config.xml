@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+    <webservice>
+        <port>8585</port>
+    </webservice>
+    <versionone>
+        <url>http://127.0.0.1/</url>
+        <username>default</username>
+        <password></password>
+    </versionone>
+    <mongodb>
+        <url>mongodb://127.0.0.1:27017/kanban</url>
+    </mongodb>
+</config>
