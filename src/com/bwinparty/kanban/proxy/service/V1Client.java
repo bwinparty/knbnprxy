@@ -37,6 +37,7 @@ public class V1Client {
     }
 
     private V1Client() {
+        //TODO: http://community.versionone.com/Developers/Developer-Library/Recipes/Tour_of_query.v1
         final AppConfig config = AppConfig.getInstance();
         V1APIConnector metaConnector = new V1APIConnector(config.getString("versionone.url", DEFAULT_URL) + META_URL_SUFFIX);
         _metaModel = new MetaModel(metaConnector);
@@ -95,6 +96,8 @@ public class V1Client {
         query.getSelection().add(createDateUTCAttribute);
         IAttributeDefinition changeDateUTCAttribute = requestType.getAttributeDefinition("ChangeDateUTC");
         query.getSelection().add(changeDateUTCAttribute);
+        IAttributeDefinition categoryNameAttribute = requestType.getAttributeDefinition("Category.Name");
+        query.getSelection().add(categoryNameAttribute);
         IAttributeDefinition riskAttribute = requestType.getAttributeDefinition("Risk");
         query.getSelection().add(riskAttribute);
         IAttributeDefinition valueAttribute = requestType.getAttributeDefinition("Value");
@@ -169,6 +172,9 @@ public class V1Client {
             }
             if(request.getAttribute(changeDateUTCAttribute).getValue() != null) {
                 epic.setChangeDateUTC((Date)request.getAttribute(changeDateUTCAttribute).getValue());
+            }
+            if(request.getAttribute(categoryNameAttribute).getValue() != null) {
+                epic.setCategoryName(request.getAttribute(categoryNameAttribute).getValue().toString());
             }
             if(request.getAttribute(riskAttribute).getValue() != null) {
                 epic.setRisk((double)request.getAttribute(riskAttribute).getValue());

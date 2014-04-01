@@ -31,6 +31,7 @@ public class Epic {
     private String ChangedBy;
     private Date CreateDateUTC;
     private Date ChangeDateUTC;
+    private String CategoryName;
     private double Risk;
     private double Value;
     private String RequestedBy;
@@ -210,5 +211,13 @@ public class Epic {
 
     public void setScope(String scope) {
         Scope = scope;
+    }
+
+    public String getCategoryName() {
+        return CategoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        CategoryName = categoryName;
     }
 }
