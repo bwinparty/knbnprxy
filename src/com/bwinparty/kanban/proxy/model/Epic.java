@@ -7,34 +7,47 @@
  */
 package com.bwinparty.kanban.proxy.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 /**
  * Created by zyclonite on 12/03/14.
  */
 public class Epic {
+    @SerializedName("_oid")
     private String ID;
     private String Name;
     private String Number;
     private String Description;
+    @SerializedName("Status.Name")
     private String Status;
     private double Swag;
     private String EstimatedDone;
     private Date PlannedEnd;
     private Date PlannedStart;
+    @SerializedName("Custom_Health.Name")
     private String Health;
+    @SerializedName("Custom_HealthComment")
     private String HealthComment;
+    @SerializedName("Custom_LaunchDate")
     private Date LaunchDate;
+    @SerializedName("Custom_Patentprotection2.Name")
     private String Patentprotection;
+    @SerializedName("Custom_Capitalizable2.Name")
     private String Capitalizable;
+    @SerializedName("CreatedBy.Name")
     private String CreatedBy;
+    @SerializedName("ChangedBy.Name")
     private String ChangedBy;
     private Date CreateDateUTC;
     private Date ChangeDateUTC;
+    @SerializedName("Category.Name")
     private String CategoryName;
     private double Risk;
     private double Value;
     private String RequestedBy;
+    @SerializedName("Scope.Name")
     private String Scope;
 
     public String getID() {

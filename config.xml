@@ -3,12 +3,20 @@
     <webservice>
         <port>8585</port>
     </webservice>
-    <versionone>
-        <url>http://127.0.0.1/</url>
-        <username>default</username>
-        <password></password>
-    </versionone>
     <mongodb>
         <url>mongodb://127.0.0.1:27017/kanban</url>
     </mongodb>
+    <versionone>
+        <client-id>client</client-id>
+        <client-name>V1Client</client-name>
+        <client-secret></client-secret>
+        <query-uri>http://127.0.0.1/query.v1</query-uri>
+        <auth-uri>http://127.0.0.1/oauth.v1/auth</auth-uri>
+        <token-uri>http://127.0.0.1/oauth.v1/token</token-uri>
+        <server-base-uri>http://127.0.0.1</server-base-uri>
+        <expires-on>9999-12-31T23:59:59.9999999</expires-on>
+        <redirect-uris>
+            <uri>urn:ietf:wg:oauth:2.0:oob</uri>
+        </redirect-uris>
+    </versionone>
 </config>
