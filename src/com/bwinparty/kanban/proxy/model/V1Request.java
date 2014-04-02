@@ -1,3 +1,10 @@
+/*
+ * knbnprxy - Kanban Proxy
+ *
+ * Copyright 2014   bwin.party digital entertainment plc
+ *                  http://www.bwinparty.com
+ * Developer: Lukas Prettenthaler
+ */
 package com.bwinparty.kanban.proxy.model;
 
 import java.util.List;
