@@ -34,7 +34,6 @@ public class EpicAdapter implements JsonSerializer<Epic> {
     public JsonElement serialize(Epic epic, Type type, JsonSerializationContext jsonSerializationContext) {
         JsonObject jsonEpic = new JsonObject();
         addProperty(jsonEpic, "ID", epic.getID());
-        addProperty(jsonEpic, "ID", epic.getID());
         addProperty(jsonEpic, "Name", epic.getName());
         addProperty(jsonEpic, "Number", epic.getNumber());
         addProperty(jsonEpic, "Description", epic.getDescription());
