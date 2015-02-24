@@ -48,7 +48,19 @@ public class Epic {
     private double Value;
     private String RequestedBy;
     @SerializedName("Scope.Name")
+
     private String Scope;
+    @SerializedName("Super.Name")
+    private String EpicRootName;
+    @SerializedName("Super.Number")
+    private String EpicRootNumber;
+    @SerializedName("Super._oid")
+    private String EpicRootID;
+
+    @SerializedName("Attachments")
+    private Object[] EpicAttachments;
+
+
 
     public String getID() {
         return ID;
@@ -232,5 +244,40 @@ public class Epic {
 
     public void setCategoryName(String categoryName) {
         CategoryName = categoryName;
+    }
+
+
+
+    public String getEpicRootName() {
+        return EpicRootName;
+    }
+
+    public void setEpicRootName(String epicRootName) {
+        EpicRootName = epicRootName;
+    }
+
+    public String getEpicRootNumber() {
+        return EpicRootNumber;
+    }
+
+    public void setEpicRootNumber(String epicRootNumber) {
+        EpicRootNumber = epicRootNumber;
+    }
+
+    public String getEpicRootID() {
+        return EpicRootID;
+    }
+
+    public void setEpicRootID(String epicRootID) {
+        EpicRootID = epicRootID;
+    }
+
+    public Object[] getEpicAttachments() {
+
+        return EpicAttachments;
+    }
+
+    public void setEpicAttachments(Object[] epicAttachments) {
+        EpicAttachments = epicAttachments;
     }
 }
