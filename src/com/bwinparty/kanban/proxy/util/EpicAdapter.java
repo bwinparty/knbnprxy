@@ -16,6 +16,7 @@ import com.google.gson.JsonSerializer;
 import java.lang.reflect.Type;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -56,6 +57,11 @@ public class EpicAdapter implements JsonSerializer<Epic> {
         addProperty(jsonEpic, "Value", epic.getValue());
         addProperty(jsonEpic, "RequestedBy", epic.getRequestedBy());
         addProperty(jsonEpic, "Scope", epic.getScope());
+        addProperty(jsonEpic, "EpicRootNumber", epic.getEpicRootNumber());
+        addProperty(jsonEpic, "EpicRootName", epic.getEpicRootName());
+        addProperty(jsonEpic, "EpicRootID", epic.getEpicRootID());
+        addProperty(jsonEpic, "EpicAttachments", Arrays.toString(epic.getEpicAttachments()));
+
         return jsonEpic;
     }
 
@@ -93,4 +99,6 @@ public class EpicAdapter implements JsonSerializer<Epic> {
         }
         jsonObject.addProperty(id, value);
     }
+
+
 }

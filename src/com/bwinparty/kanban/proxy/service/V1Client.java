@@ -128,6 +128,7 @@ public class V1Client {
         select.add("Description");
         select.add("Status.Name");
         select.add("Swag");
+        select.add("Attachments");
         select.add("EstimatedDone");
         select.add("PlannedEnd");
         select.add("PlannedStart");
@@ -144,7 +145,11 @@ public class V1Client {
         select.add("Risk");
         select.add("Value");
         select.add("RequestedBy");
-        select.add("Scope.Name");
+        select.add("Super.Number");
+        select.add("Super.Name");
+
+        //select.add("Super.OID");
+
         request.setSelect(select);
         Map<String, String> fields = new HashMap<>();
         fields.put("Custom_Corporateinterest2.Name", "Yes");
