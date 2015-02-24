@@ -129,6 +129,7 @@ public class V1Client {
         select.add("Status.Name");
         select.add("Swag");
         select.add("Attachments");
+        select.add("Attachments.Name");
         select.add("EstimatedDone");
         select.add("PlannedEnd");
         select.add("PlannedStart");
@@ -147,8 +148,6 @@ public class V1Client {
         select.add("RequestedBy");
         select.add("Super.Number");
         select.add("Super.Name");
-
-        //select.add("Super.OID");
 
         request.setSelect(select);
         Map<String, String> fields = new HashMap<>();
