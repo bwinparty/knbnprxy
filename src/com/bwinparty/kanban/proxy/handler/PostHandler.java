@@ -7,6 +7,7 @@
  */
 package com.bwinparty.kanban.proxy.handler;
 
+import com.bwinparty.kanban.proxy.service.VertX;
 import org.apache.batik.transcoder.Transcoder;
 import org.apache.batik.transcoder.TranscoderInput;
 import org.apache.batik.transcoder.TranscoderOutput;
@@ -14,9 +15,15 @@ import org.apache.batik.transcoder.image.PNGTranscoder;
 import org.apache.fop.svg.PDFTranscoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.vertx.java.core.AsyncResult;
+import org.vertx.java.core.AsyncResultHandler;
 import org.vertx.java.core.Handler;
 import org.vertx.java.core.buffer.Buffer;
 import org.vertx.java.core.http.HttpServerRequest;
+
+import org.vertx.java.core.file.AsyncFile;
+import org.vertx.java.core.file.FileProps;
+import org.vertx.java.core.file.FileSystem;
 
 import java.awt.*;
 import java.io.ByteArrayInputStream;
@@ -32,7 +39,7 @@ public class PostHandler implements Handler<HttpServerRequest> {
 
     @Override
     public void handle(final HttpServerRequest httpServerRequest) {
-        LOG.trace("handling request");
+        LOG.info("++ transcode says: handling POST request");
         final String endpoint = httpServerRequest.params().get("endpoint");
         httpServerRequest.response().putHeader("Access-Control-Allow-Origin", "*");
         httpServerRequest.response().putHeader("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
@@ -44,10 +51,15 @@ public class PostHandler implements Handler<HttpServerRequest> {
                 String dateString = dformat.format( System.currentTimeMillis() );
                 Buffer output;
                 String contenttype = "application/json; charset=utf-8";
+                String format = httpServerRequest.params().get("format");
+                String context = httpServerRequest.params().get("context");
+
+                LOG.info("++ transcode says: format: "+format+" context:"+context);
+
                 String fileName = "kanban_transcoded_"+httpServerRequest.params().contains("context")+"_"+dateString;
                 try {
                     switch (endpoint) {
-                        case "compile":
+                        case "transcode":
                             if (!httpServerRequest.params().contains("format")) {
                                 throw new Exception("no format parameter");
                             }
@@ -58,6 +70,9 @@ public class PostHandler implements Handler<HttpServerRequest> {
                             TranscoderInput transcoderInput;
                             TranscoderOutput transcoderOutput;
                             Transcoder transcoder;
+
+                            FileSystem fs = VertX.getInstance().getFileSystem();
+
                             switch(httpServerRequest.params().get("format")) {
                                 case "pdf":
                                     fileName+=".pdf";
@@ -67,6 +82,9 @@ public class PostHandler implements Handler<HttpServerRequest> {
                                     transcoder.transcode(transcoderInput, transcoderOutput);
                                     contenttype = "application/pdf";
                                     output = new Buffer(outputStream.toByteArray());
+                                    fs = VertX.getInstance().getFileSystem();
+                                    fs.writeFile("./tmp/transcode.pdf", output, null);
+
                                     break;
                                 case "png":
                                     fileName+=".png";
@@ -85,11 +103,22 @@ public class PostHandler implements Handler<HttpServerRequest> {
                                     transcoder.transcode(transcoderInput, transcoderOutput);
                                     contenttype = "image/png";
                                     output = new Buffer(outputStream.toByteArray());
+                                    fs = VertX.getInstance().getFileSystem();
+                                    fs.writeFile("./tmp/transcode.png", output, null);
+                                    LOG.info("--- and trying to save to file.png...");
+
                                     break;
                                 case "svg":
                                     fileName+=".svg";
                                     contenttype = "image/svg+xml";
                                     output = buffer.copy();
+                                    LOG.info("--- transcode says: handling svg stuff...");
+
+
+
+                                    fs.writeFile("./tmp/transcode.svg", buffer, null);
+                                    LOG.info("--- and trying to save to file...");
+
                                     break;
                                 default:
                                     throw new Exception("wrong format");
@@ -106,8 +135,12 @@ public class PostHandler implements Handler<HttpServerRequest> {
                     LOG.warn(ex.getMessage(), ex);
                 }
                 httpServerRequest.response().putHeader("Content-Type", contenttype);
+                //LOG.info("--- transcode says: ...sending back contenttype: "+contenttype);
+                //LOG.info("************ transcode says: ...sending back content: "+output);
+
                 httpServerRequest.response().end(output);
             }
         });
     }
 }
+
