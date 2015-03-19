@@ -11,6 +11,7 @@ import org.vertx.java.core.Handler;
 import org.vertx.java.core.Vertx;
 import org.vertx.java.core.VertxFactory;
 import org.vertx.java.core.eventbus.EventBus;
+import org.vertx.java.core.file.FileSystem;
 import org.vertx.java.core.http.HttpServer;
 import org.vertx.java.core.http.HttpServerRequest;
 import org.vertx.java.core.http.RouteMatcher;
@@ -67,6 +68,10 @@ public class VertX {
 
     public void cancelTimer(final long timerid) {
         vertx.cancelTimer(timerid);
+    }
+
+    public FileSystem getFileSystem() {
+        return vertx.fileSystem();
     }
 
     public EventBus getEventBus() {
