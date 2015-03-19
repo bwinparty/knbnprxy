@@ -82,9 +82,16 @@ public class PostHandler implements Handler<HttpServerRequest> {
                                     transcoder.transcode(transcoderInput, transcoderOutput);
                                     contenttype = "application/pdf";
                                     output = new Buffer(outputStream.toByteArray());
-                                    fs = VertX.getInstance().getFileSystem();
-                                    fs.writeFile("./tmp/transcode.pdf", output, null);
-
+                                    fs.writeFile("./tmp/transcode.pdf", output, new Handler<AsyncResult<Void>>() {
+                                        @Override
+                                        public void handle(AsyncResult<Void> result) {
+                                            if(result.succeeded()) {
+                                                LOG.info("[success] writefile");
+                                            } else {
+                                                LOG.info("[failed] writefile");
+                                            }
+                                        };
+                                    });
                                     break;
                                 case "png":
                                     fileName+=".png";
@@ -103,8 +110,16 @@ public class PostHandler implements Handler<HttpServerRequest> {
                                     transcoder.transcode(transcoderInput, transcoderOutput);
                                     contenttype = "image/png";
                                     output = new Buffer(outputStream.toByteArray());
-                                    fs = VertX.getInstance().getFileSystem();
-                                    fs.writeFile("./tmp/transcode.png", output, null);
+                                    fs.writeFile("./tmp/transcode.png", output, new Handler<AsyncResult<Void>>() {
+                                        @Override
+                                        public void handle(AsyncResult<Void> result) {
+                                            if(result.succeeded()) {
+                                                LOG.info("[success] writefile");
+                                            } else {
+                                                LOG.info("[failed] writefile");
+                                            }
+                                        };
+                                    });
                                     LOG.info("--- and trying to save to file.png...");
 
                                     break;
@@ -113,12 +128,18 @@ public class PostHandler implements Handler<HttpServerRequest> {
                                     contenttype = "image/svg+xml";
                                     output = buffer.copy();
                                     LOG.info("--- transcode says: handling svg stuff...");
+                                    fs.writeFile("./tmp/transcode.svg", buffer, new Handler<AsyncResult<Void>>() {
+                                        @Override
+                                        public void handle(AsyncResult<Void> result) {
+                                            if(result.succeeded()) {
+                                                LOG.info("[success] writefile");
+                                            } else {
+                                                LOG.info("[failed] writefile");
+                                            }
+                                        };
+                                    });
 
-
-
-                                    fs.writeFile("./tmp/transcode.svg", buffer, null);
                                     LOG.info("--- and trying to save to file...");
-
                                     break;
                                 default:
                                     throw new Exception("wrong format");
