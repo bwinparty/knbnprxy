@@ -149,7 +149,10 @@ public class V1Client {
         select.add("Super.Number");
         select.add("Super.Name");
         select.add("StrategicThemes.Name");
-
+        select.add("Custom_InitativeOwner");
+        select.add("Custom_LaunchDateWhy");
+        select.add("Custom_ElevatorPitch");
+       
         request.setSelect(select);
         Map<String, String> fields = new HashMap<>();
         fields.put("Custom_Corporateinterest2.Name", "Yes");

@@ -60,6 +60,13 @@ public class Epic {
     @SerializedName("StrategicThemes.Name")
     private Object[] StrategicThemesNames;
 
+    @SerializedName("Custom_InitativeOwner")
+    private String InitiativeOwner;
+    @SerializedName("Custom_LaunchDateWhy")
+    private String LaunchDateWhy;
+    @SerializedName("Custom_ElevatorPitch")
+    private String ElevatorPitch;
+
 
 
 
@@ -293,5 +300,28 @@ public class Epic {
     public void setStrategicThemesNames(Object[] strategicThemesNames) {
         StrategicThemesNames = strategicThemesNames;
     }
+
+
+    public String getInitiativeOwner() {
+        return InitiativeOwner;
+    }
+    public void setInitiativeOwner(String initiativeOwner) {
+        InitiativeOwner = initiativeOwner;
+    }
+
+    public String getLaunchDateWhy() {
+        return LaunchDateWhy;
+    }
+    public void setLaunchDateWhy(String launchDateWhy) {
+        LaunchDateWhy = launchDateWhy;
+    }
+
+    public String getElevatorPitch() {
+        return ElevatorPitch;
+    }
+    public void setElevatorPitch(String elevatorPitch) {
+        ElevatorPitch = elevatorPitch;
+    }
+
 
 }
