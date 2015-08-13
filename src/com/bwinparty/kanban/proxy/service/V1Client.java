@@ -148,6 +148,7 @@ public class V1Client {
         select.add("RequestedBy");
         select.add("Super.Number");
         select.add("Super.Name");
+        select.add("StrategicThemes.Name");
 
         request.setSelect(select);
         Map<String, String> fields = new HashMap<>();

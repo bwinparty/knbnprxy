@@ -57,6 +57,9 @@ public class Epic {
     private Object[] EpicAttachments;
     @SerializedName("Attachments.Name")
     private Object[] EpicAttachmentNames;
+    @SerializedName("StrategicThemes.Name")
+    private Object[] StrategicThemesNames;
+
 
 
 
@@ -280,6 +283,15 @@ public class Epic {
 
     public void setEpicAttachmentNames(Object[] epicAttachmentNames) {
         EpicAttachmentNames = epicAttachmentNames;
+    }
+
+    public Object[] getStrategicThemesNames() {
+
+        return StrategicThemesNames;
+    }
+
+    public void setStrategicThemesNames(Object[] strategicThemesNames) {
+        StrategicThemesNames = strategicThemesNames;
     }
 
 }
