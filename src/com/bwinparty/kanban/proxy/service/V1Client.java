@@ -152,13 +152,13 @@ public class V1Client {
         select.add("Custom_InitativeOwner");
         select.add("Custom_LaunchDateWhy");
         select.add("Custom_ElevatorPitch");
+        select.add("Custom_Corporateinterest2.Name");
 
         request.setSelect(select);
         //Map<String, String> fields = new HashMap<>();
         //fields.put("Custom_Corporateinterest2.Name", "Yes");
-        //fields.put("Category.Name", "Initiative");
-
         //request.setWhere(fields);
+
         final HttpContent content = new ByteArrayContent("application/json", GSON.toJson(request).getBytes());
         HttpRequest v1request = requestFactory.buildPostRequest(v1url, content);
 

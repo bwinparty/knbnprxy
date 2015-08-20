@@ -66,6 +66,8 @@ public class Epic {
     private String LaunchDateWhy;
     @SerializedName("Custom_ElevatorPitch")
     private String ElevatorPitch;
+    @SerializedName("Custom_Corporateinterest2.Name")
+    private String PortfolioApproval;
 
 
 
@@ -323,5 +325,11 @@ public class Epic {
         ElevatorPitch = elevatorPitch;
     }
 
+    public String getPortfolioApproval() {
+        return PortfolioApproval;
+    }
+    public void setPortfolioApproval(String portfolioApproval) {
+        PortfolioApproval = portfolioApproval;
+    }
 
 }
