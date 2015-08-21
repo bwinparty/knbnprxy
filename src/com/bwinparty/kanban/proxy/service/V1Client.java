@@ -133,6 +133,8 @@ public class V1Client {
         select.add("EstimatedDone");
         select.add("PlannedEnd");
         select.add("PlannedStart");
+        select.add("PlannedStart");
+        select.add("Scope.Name");
         select.add("Custom_Health.Name");
         select.add("Custom_HealthComment");
         select.add("Custom_LaunchDate");

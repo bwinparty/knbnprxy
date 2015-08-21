@@ -48,7 +48,7 @@ public class Epic {
     private double Value;
     private String RequestedBy;
     @SerializedName("Scope.Name")
-    private String Scope;
+    private String BusinessBacklog;
     @SerializedName("Super.Name")
     private String EpicRootName;
     @SerializedName("Super.Number")
@@ -240,12 +240,12 @@ public class Epic {
         RequestedBy = requestedBy;
     }
 
-    public String getScope() {
-        return Scope;
+    public String getBusinessBacklog() {
+        return BusinessBacklog;
     }
 
-    public void setScope(String scope) {
-        Scope = scope;
+    public void setBusinessBacklog(String businessBacklog) {
+        BusinessBacklog = businessBacklog;
     }
 
     public String getCategoryName() {

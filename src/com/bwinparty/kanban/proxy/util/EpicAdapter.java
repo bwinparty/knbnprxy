@@ -56,7 +56,7 @@ public class EpicAdapter implements JsonSerializer<Epic> {
         addProperty(jsonEpic, "Risk", epic.getRisk());
         addProperty(jsonEpic, "Value", epic.getValue());
         addProperty(jsonEpic, "RequestedBy", epic.getRequestedBy());
-        addProperty(jsonEpic, "Scope", epic.getScope());
+        addProperty(jsonEpic, "BusinessBacklog", epic.getBusinessBacklog());
         addProperty(jsonEpic, "EpicRootNumber", epic.getEpicRootNumber());
         addProperty(jsonEpic, "EpicRootName", epic.getEpicRootName());
         addProperty(jsonEpic, "EpicAttachments", Arrays.toString(epic.getEpicAttachments()));
