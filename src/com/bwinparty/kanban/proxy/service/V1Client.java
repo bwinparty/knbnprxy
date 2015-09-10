@@ -8,6 +8,10 @@
 package com.bwinparty.kanban.proxy.service;
 
 import com.bwinparty.kanban.proxy.model.Epic;
+import com.bwinparty.kanban.proxy.model.Backlog;
+import com.bwinparty.kanban.proxy.model.Program;
+import com.bwinparty.kanban.proxy.model.Team;
+import com.bwinparty.kanban.proxy.model.Member;
 import com.bwinparty.kanban.proxy.model.V1Request;
 import com.bwinparty.kanban.proxy.util.DateAdapter;
 import com.google.api.client.auth.oauth2.*;
@@ -117,7 +121,7 @@ public class V1Client {
         return codeFlow.createAndStoreCredential(tokenResponse, USER_ID);
     }
 
-    public List<Epic> getAllCorpEpics() throws IOException {
+    public List<Epic> getEpics() throws IOException {
         GenericUrl v1url = new GenericUrl(config.getString("versionone.query-uri"));
 
         V1Request request = new V1Request();
@@ -172,4 +176,118 @@ public class V1Client {
         List<List<Epic>> epicsList = GSON.fromJson(json, listType);
         return epicsList.get(0);
     }
+
+    public List<Backlog> getBacklogs() throws IOException {
+        GenericUrl v1url = new GenericUrl(config.getString("versionone.query-uri"));
+
+        V1Request request = new V1Request();
+        request.setFrom("Scope");
+        List<String> select = new ArrayList<>();
+        select.add("ID");
+        select.add("Name");
+        select.add("Owner.Name");
+        select.add("Parent.Name");
+        select.add("BeginDate");
+
+        request.setSelect(select);
+
+        final HttpContent content = new ByteArrayContent("application/json", GSON.toJson(request).getBytes());
+        HttpRequest v1request = requestFactory.buildPostRequest(v1url, content);
+
+        HttpResponse v1response = v1request.execute();
+        String json = v1response.parseAsString();
+        //LOG.info(json);
+        Type listType = new TypeToken<ArrayList<ArrayList<Backlog>>>() {
+        }.getType();
+        List<List<Backlog>> backlogsList = GSON.fromJson(json, listType);
+        return backlogsList.get(0);
+    }
+
+    public List<Program> getPrograms() throws IOException {
+        GenericUrl v1url = new GenericUrl(config.getString("versionone.query-uri"));
+
+        V1Request request = new V1Request();
+        request.setFrom("ScopeLabel");
+        List<String> select = new ArrayList<>();
+        select.add("ID");
+        select.add("Name");
+        select.add("Description");
+        select.add("Scopes.Name");
+
+        request.setSelect(select);
+
+
+        LOG.info("***getPrograms()");
+
+        final HttpContent content = new ByteArrayContent("application/json", GSON.toJson(request).getBytes());
+        HttpRequest v1request = requestFactory.buildPostRequest(v1url, content);
+
+        HttpResponse v1response = v1request.execute();
+        String json = v1response.parseAsString();
+        LOG.info(json);
+        Type listType = new TypeToken<ArrayList<ArrayList<Program>>>() {
+        }.getType();
+        List<List<Program>> programsList = GSON.fromJson(json, listType);
+        return programsList.get(0);
+    }
+
+
+    public List<Team> getTeams() throws IOException {
+        GenericUrl v1url = new GenericUrl(config.getString("versionone.query-uri"));
+
+        V1Request request = new V1Request();
+        request.setFrom("TeamRoom");
+        List<String> select = new ArrayList<>();
+        select.add("ID");
+        select.add("Name");
+        select.add("Scope.Name");
+        select.add("ScopeLabel.Name");
+        select.add("Schedule.Name");
+
+        request.setSelect(select);
+
+
+        final HttpContent content = new ByteArrayContent("application/json", GSON.toJson(request).getBytes());
+        HttpRequest v1request = requestFactory.buildPostRequest(v1url, content);
+
+        HttpResponse v1response = v1request.execute();
+        String json = v1response.parseAsString();
+        LOG.info(json);
+        Type listType = new TypeToken<ArrayList<ArrayList<Team>>>() {
+        }.getType();
+        List<List<Team>> teamsList = GSON.fromJson(json, listType);
+        return teamsList.get(0);
+    }
+
+
+    public List<Member> getMembers() throws IOException {
+        GenericUrl v1url = new GenericUrl(config.getString("versionone.query-uri"));
+
+        V1Request request = new V1Request();
+        request.setFrom("Member");
+        List<String> select = new ArrayList<>();
+        select.add("ID");
+        select.add("Name");
+        select.add("Email");
+        select.add("IsLoginDisabled");
+
+        Map<String, String> fields = new HashMap<>();
+        fields.put("IsLoginDisabled", "false");
+        request.setWhere(fields);
+
+        request.setSelect(select);
+
+        final HttpContent content = new ByteArrayContent("application/json", GSON.toJson(request).getBytes());
+        HttpRequest v1request = requestFactory.buildPostRequest(v1url, content);
+
+        HttpResponse v1response = v1request.execute();
+        String json = v1response.parseAsString();
+        LOG.info(json);
+        Type listType = new TypeToken<ArrayList<ArrayList<Member>>>() {
+        }.getType();
+        List<List<Member>> membersList = GSON.fromJson(json, listType);
+        return membersList.get(0);
+    }
+
+
 }
