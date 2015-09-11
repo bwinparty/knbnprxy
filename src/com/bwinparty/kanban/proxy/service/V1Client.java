@@ -243,6 +243,8 @@ public class V1Client {
         select.add("Scope.Name");
         select.add("ScopeLabel.Name");
         select.add("Schedule.Name");
+        select.add("Participants");
+
 
         request.setSelect(select);
 
@@ -270,6 +272,8 @@ public class V1Client {
         select.add("Name");
         select.add("Email");
         select.add("IsLoginDisabled");
+        select.add("ParticipatesIn");
+
 
         Map<String, String> fields = new HashMap<>();
         fields.put("IsLoginDisabled", "false");
