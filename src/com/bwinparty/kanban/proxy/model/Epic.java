@@ -49,6 +49,8 @@ public class Epic {
     private String RequestedBy;
     @SerializedName("Scope.Name")
     private String BusinessBacklog;
+    @SerializedName("Scope.ID")
+    private Object BusinessBacklogID;
     @SerializedName("Super.Name")
     private String EpicRootName;
     @SerializedName("Super.Number")
@@ -68,9 +70,25 @@ public class Epic {
     private String ElevatorPitch;
     @SerializedName("Custom_Corporateinterest2.Name")
     private String PortfolioApproval;
+    private Boolean IsClosed;
+    private Boolean IsCompleted;
 
+    public Boolean getIsClosed() {
+        return IsClosed;
+    }
 
+        public void setIsClosed(Boolean isClosed) {
+        IsClosed = isClosed;
 
+    }
+
+    public Boolean getIsCompleted() {
+        return IsCompleted;
+    }
+
+    public void setIsCompleted(Boolean isCompleted) {
+        IsCompleted = isCompleted;
+    }
 
     public String getID() {
         return ID;
@@ -246,6 +264,14 @@ public class Epic {
 
     public void setBusinessBacklog(String businessBacklog) {
         BusinessBacklog = businessBacklog;
+    }
+
+    public Object getBusinessBacklogID() {
+        return BusinessBacklogID;
+    }
+
+    public void setBusinessBacklogID(Object businessBacklogID) {
+        BusinessBacklogID = businessBacklogID;
     }
 
     public String getCategoryName() {

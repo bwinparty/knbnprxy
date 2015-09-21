@@ -139,6 +139,7 @@ public class V1Client {
         select.add("PlannedStart");
         select.add("PlannedStart");
         select.add("Scope.Name");
+        select.add("Scope.ID");
         select.add("Custom_Health.Name");
         select.add("Custom_HealthComment");
         select.add("Custom_LaunchDate");
@@ -159,6 +160,8 @@ public class V1Client {
         select.add("Custom_LaunchDateWhy");
         select.add("Custom_ElevatorPitch");
         select.add("Custom_Corporateinterest2.Name");
+        select.add("IsClosed");
+        select.add("IsCompleted");
 
         request.setSelect(select);
         //Map<String, String> fields = new HashMap<>();
