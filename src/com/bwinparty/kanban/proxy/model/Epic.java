@@ -23,7 +23,6 @@ public class Epic {
     @SerializedName("Status.Name")
     private String Status;
     private double Swag;
-    private String EstimatedDone;
     private Date PlannedEnd;
     private Date PlannedStart;
     @SerializedName("Custom_Health.Name")
@@ -72,6 +71,43 @@ public class Epic {
     private String PortfolioApproval;
     private Boolean IsClosed;
     private Boolean IsCompleted;
+
+    private double EstimatedDone;
+    private double DetailEstimate;
+    private double AllocatedDetailEstimate;
+    private double EstimatedAllocatedDone;
+
+    public double getEstimatedDone() {
+        return EstimatedDone;
+    }
+
+    public void setEstimatedDone(double estimatedDone) {
+        EstimatedDone = estimatedDone;
+    }
+
+    public double getDetailEstimate() {
+        return DetailEstimate;
+    }
+
+    public void setDetailEstimate(double detailEstimate) {
+        DetailEstimate = detailEstimate;
+    }
+
+    public double getAllocatedDetailEstimate() {
+        return AllocatedDetailEstimate;
+    }
+
+    public void setAllocatedDetailEstimate(double allocatedDetailEstimate) {
+        AllocatedDetailEstimate = allocatedDetailEstimate;
+    }
+
+    public double getEstimatedAllocatedDone() {
+        return EstimatedAllocatedDone;
+    }
+
+    public void setEstimatedAllocatedDone(double estimatedAllocatedDone) {
+        EstimatedAllocatedDone = estimatedAllocatedDone;
+    }
 
     public Boolean getIsClosed() {
         return IsClosed;
@@ -136,14 +172,6 @@ public class Epic {
 
     public void setSwag(double swag) {
         Swag = swag;
-    }
-
-    public String getEstimatedDone() {
-        return EstimatedDone;
-    }
-
-    public void setEstimatedDone(String estimatedDone) {
-        EstimatedDone = estimatedDone;
     }
 
     public Date getPlannedEnd() {

@@ -135,6 +135,9 @@ public class V1Client {
         select.add("Attachments");
         select.add("Attachments.Name");
         select.add("EstimatedDone");
+        select.add("DetailEstimate");
+        select.add("AllocatedDetailEstimate");
+        select.add("EstimatedAllocatedDone");
         select.add("PlannedEnd");
         select.add("PlannedStart");
         select.add("PlannedStart");
