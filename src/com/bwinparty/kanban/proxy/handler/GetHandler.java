@@ -76,6 +76,11 @@ public class GetHandler implements Handler<HttpServerRequest> {
                     httpServerRequest.response().putHeader("Pragma", "no-cache");
                     output = GSON_Members.toJson(v1client.getMembers());
                     break;
+                case "epicsprogress":
+                    httpServerRequest.response().putHeader("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
+                    httpServerRequest.response().putHeader("Pragma", "no-cache");
+                    output = GSON_Members.toJson(v1client.getEpicProgress());
+                    break;
                 default:
                     output = "{\"error\":\"wrong endpoint\"}";
             }

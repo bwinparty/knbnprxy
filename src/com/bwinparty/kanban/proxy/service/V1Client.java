@@ -299,5 +299,36 @@ public class V1Client {
         return membersList.get(0);
     }
 
+    public List<Object> getEpicProgress() throws IOException {
+        GenericUrl v1url = new GenericUrl(config.getString("versionone.query-uri"));
+
+        V1Request request = new V1Request();
+        request.setFrom("Epic");
+        List<String> select = new ArrayList<>();
+        select.add("ID");
+        select.add("Number");
+        select.add("SubsAndDown:PrimaryWorkitem[AssetState='Closed'].Estimate.@Sum");
+        select.add("SubsAndDown:PrimaryWorkitem[AssetState!='Dead'].Estimate.@Sum");
+
+
+
+        //Map<String, String> fields = new HashMap<>();
+        //fields.put("Number", "E-09822");
+        //request.setWhere(fields);
+
+        request.setSelect(select);
+
+        final HttpContent content = new ByteArrayContent("application/json", GSON.toJson(request).getBytes());
+        HttpRequest v1request = requestFactory.buildPostRequest(v1url, content);
+
+        HttpResponse v1response = v1request.execute();
+        String json = v1response.parseAsString();
+        LOG.info(json);
+        Type listType = new TypeToken<ArrayList<ArrayList<Object>>>() {
+        }.getType();
+        List<List<Object>> progress = GSON.fromJson(json, listType);
+        return progress.get(0);
+    }
+
 
 }

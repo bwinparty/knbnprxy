@@ -17,6 +17,7 @@ public class V1Request {
     private String from;
     private List<String> select;
     private Map<String, String> where;
+    private Map<String, String> filter;
     private Map<String, String> with;
     private String find;
     private List<String> findin;
@@ -46,6 +47,14 @@ public class V1Request {
 
     public void setWhere(Map<String, String> where) {
         this.where = where;
+    }
+
+    public Map<String, String> getFilter() {
+        return filter;
+    }
+
+    public void setFilter(Map<String, String> filter) {
+        this.filter = filter;
     }
 
     public Map<String, String> getWith() {
