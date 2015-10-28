@@ -39,7 +39,7 @@ public class PostHandler implements Handler<HttpServerRequest> {
 
     @Override
     public void handle(final HttpServerRequest httpServerRequest) {
-        LOG.info("++ transcode says: handling POST request");
+        LOG.debug("++ transcode says: handling POST request");
         final String endpoint = httpServerRequest.params().get("endpoint");
         httpServerRequest.response().putHeader("Access-Control-Allow-Origin", "*");
         httpServerRequest.response().putHeader("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
@@ -55,6 +55,9 @@ public class PostHandler implements Handler<HttpServerRequest> {
                 String context = httpServerRequest.params().get("context");
 
                 LOG.info("++ transcode says: format: "+format+" context:"+context);
+
+                LOG.info("++++++ transcode says: endpoint: "+endpoint+" buffer:"+buffer.toString());
+
 
                 String fileName = "kanban_transcoded_"+httpServerRequest.params().contains("context")+"_"+dateString;
                 try {
