@@ -53,11 +53,7 @@ public class PostHandler implements Handler<HttpServerRequest> {
                 String contenttype = "application/json; charset=utf-8";
                 String format = httpServerRequest.params().get("format");
                 String context = httpServerRequest.params().get("context");
-
                 LOG.info("++ transcode says: format: "+format+" context:"+context);
-
-                LOG.info("++++++ transcode says: endpoint: "+endpoint+" buffer:"+buffer.toString());
-
 
                 String fileName = "kanban_transcoded_"+httpServerRequest.params().contains("context")+"_"+dateString;
                 try {
