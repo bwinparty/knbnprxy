@@ -277,8 +277,10 @@ public class V1Client {
         select.add("ID");
         select.add("Name");
         select.add("Email");
+        select.add("Custom_EmployeeID");
         select.add("IsLoginDisabled");
         select.add("ParticipatesIn");
+
 
 
         Map<String, String> fields = new HashMap<>();

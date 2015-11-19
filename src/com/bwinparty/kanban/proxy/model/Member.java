@@ -17,10 +17,19 @@ public class Member {
     private String ID;
     private String Name;
     private String Email;
+    @SerializedName("Custom_EmployeeID")
+    private String EmployeeId;
     @SerializedName("IsLoginDisabled")
     private Boolean IsDisabled;
     private Object ParticipatesIn;
 
+    public String getEmployeeId() {
+        return EmployeeId;
+    }
+
+    public void setEmployeeId(String employeeId) {
+        EmployeeId = employeeId;
+    }
 
     public String getID() {
         return ID;

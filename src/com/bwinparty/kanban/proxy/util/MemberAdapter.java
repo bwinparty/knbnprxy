@@ -37,10 +37,9 @@ public class MemberAdapter implements JsonSerializer<Member> {
         addProperty(jsonMember, "ID", member.getID());
         addProperty(jsonMember, "Name", member.getName());
         addProperty(jsonMember, "Email", member.getEmail());
+        addProperty(jsonMember, "EmployeeId", member.getEmployeeId());
         addProperty(jsonMember, "IsDisabled", member.getIsDisabled());
         addProperty(jsonMember, "ParticipatesIn", member.getParticipatesIn().toString());
-
-
         return jsonMember;
     }
 
