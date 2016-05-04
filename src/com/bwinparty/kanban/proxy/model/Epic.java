@@ -29,7 +29,7 @@ public class Epic {
     private String Health;
     @SerializedName("Custom_HealthComment")
     private String HealthComment;
-    @SerializedName("Custom_LaunchDate")
+    @SerializedName("Custom_PlannedLaunchDate")
     private Date LaunchDate;
     @SerializedName("Custom_Patentprotection2.Name")
     private String Patentprotection;
