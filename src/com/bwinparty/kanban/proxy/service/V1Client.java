@@ -145,7 +145,7 @@ public class V1Client {
         select.add("Scope.ID");
         select.add("Custom_Health.Name");
         select.add("Custom_HealthComment");
-        select.add("Custom_LaunchDate");
+        select.add("Custom_PlannedLaunchDate");
         select.add("Custom_Patentprotection2.Name");
         select.add("Custom_Capitalizable2.Name");
         select.add("CreatedBy.Name");
